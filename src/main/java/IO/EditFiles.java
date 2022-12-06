@@ -43,4 +43,13 @@ public class EditFiles {
     private static boolean checkSouvenirsFromManufacturer(String nameM){
         return manufacturersList.stream().anyMatch(m -> m.getName().equals(nameM));
     }
+
+    public static void getSouvenirsFromCountry(String country){
+        if(checkSouvenirsFromCountry(country)){
+            souvenirsList.stream().filter(s -> s.getManufacturer().getCountry().equals(country)).forEach(Souvenir::print);
+        }
+    }
+    private static boolean checkSouvenirsFromCountry(String country){
+        return manufacturersList.stream().anyMatch(m -> m.getCountry().equals(country));
+    }
 }

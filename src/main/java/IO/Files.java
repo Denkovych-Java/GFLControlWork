@@ -29,7 +29,7 @@ public class Files {
     private static void writeFileManufacturer(String dir) {
         try {
             FileWriter fileWriter = new FileWriter(directory + dir);
-            ArrayList<Manufacturer> manufacturers = SouvenirsUtils.getManufacturerList();
+            ArrayList<Manufacturer> manufacturers = EditFiles.getManufacturers();
             for (Manufacturer manufacturer : manufacturers) {
                 for (String m : Arrays.asList(" ", "\n" + manufacturer.getName(), "\n" + manufacturer.getCountry() + "\n")) {
                     fileWriter.write(m);
@@ -42,31 +42,10 @@ public class Files {
         }
     }
 
-    private static void readFileManufacturer(String dir){
-        try {
-            File file = new File(directory + dir);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()){
-                String sep = scanner.nextLine();
-                if(sep.equals(" ")){
-                    String name = scanner.nextLine();
-                    String country = scanner.nextLine();
-                    SouvenirsUtils.addManufacturerToList(new Manufacturer(name, country));
-                }
-                else if (sep.equals(";")){
-                    break;
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static void writeFileSouvenir(String dir) {
         try {
             FileWriter fileWriter = new FileWriter(directory + dir);
-            ArrayList<Souvenir> souvenirs = SouvenirsUtils.getManufacturerList();
+            ArrayList<Souvenir> souvenirs = EditFiles.getSouvenirs();
             for (Souvenir s : souvenirs) {
                 fileWriter.write(" ");
                 fileWriter.write("\n" + s.getName());
@@ -94,8 +73,7 @@ public class Files {
                     String str = scanner.nextLine();
                     BigDecimal price = new BigDecimal(scanner.nextLine());
                     Calendar date = checkData(str);
-                    SouvenirsUtils.addSouvenirToList(new Souvenir(nameSouvenir, new Manufacturer(nameManufacturer, country), date, price));
-
+                    EditFiles.addSouvenir(new Souvenir(nameSouvenir, new Manufacturer(nameManufacturer, country),date,price));
                 }
                 else if (sep.equals(";")){
                     break;
