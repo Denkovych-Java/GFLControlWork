@@ -6,18 +6,6 @@ import java.util.Properties;
 
 public class Main {
     private String directory;
-    public static void main(String[] args) {
-        new Main().run();
-    }
+    public static void main(String[] args){
 
-    private void run() {
-        Properties properties = new Properties();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("config.properties"));
-            properties.load(reader);
-            directory = properties.getProperty("data");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
