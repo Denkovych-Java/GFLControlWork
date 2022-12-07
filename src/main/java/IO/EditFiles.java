@@ -6,6 +6,7 @@ import souvenirs.Souvenir;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class EditFiles {
 
@@ -105,9 +106,15 @@ public class EditFiles {
     }
 
     public static void deleteManufacturerAndSouvenirs(String nameM){
-        for (Manufacturer m : manufacturersList) {
-            if (m.getName().equals(nameM)) {
+        Iterator<Manufacturer> m = manufacturersList.iterator();
+        souvenirsList.removeIf(souvenir -> souvenir.getManufacturer().getName().equals(nameM));
+        while (m.hasNext()) {
+            Manufacturer manufacturer = m.next();
+            if(manufacturer.getName().equals(nameM)){
+                m.remove();
             }
         }
+        Files.writeFiles();
     }
+
 }
