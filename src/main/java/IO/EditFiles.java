@@ -67,7 +67,7 @@ public class EditFiles {
         }
     }
 
-    public static void getManufacturerWithSouvenirsYears(String nameS, int year){
+    public static void getManufacturerWithSouvenirsYears(String nameS, int year) {
         System.out.println("Souvenir: ");
         souvenirsList.stream().filter(s -> s.getName().equals(nameS) && s.getDate().get(Calendar.YEAR) == year).forEach(s -> {
             System.out.println("Manufacturer: ");
@@ -75,4 +75,39 @@ public class EditFiles {
         });
     }
 
+
+    public static void getSouvenirsFromYear() {
+        int min = getRangeOfYears()[0];
+        int max = getRangeOfYears()[1];
+        for (int i = min; i < max; i++) {
+            System.out.println(" Year: " + 1);
+            for (Souvenir s : souvenirsList) {
+                if (s.getDate().get(Calendar.YEAR) == i) {
+                    s.print();
+                }
+            }
+        }
+    }
+
+    private static int[] getRangeOfYears() {
+        int minY = souvenirsList.get(0).getDate().get(Calendar.YEAR);
+        int maxY = souvenirsList.get(0).getDate().get(Calendar.YEAR);
+        for (Souvenir s : souvenirsList) {
+            int temp = s.getDate().get(Calendar.YEAR);
+            if (temp > maxY) {
+                maxY = temp;
+            }
+            if (temp < minY) {
+                minY = temp;
+            }
+        }
+        return new int[]{minY, maxY};
+    }
+
+    public static void deleteManufacturerAndSouvenirs(String nameM){
+        for (Manufacturer m : manufacturersList) {
+            if (m.getName().equals(nameM)) {
+            }
+        }
+    }
 }
