@@ -10,7 +10,7 @@ import java.util.*;
 public class Files {
     private static String directory;
 
-    private void setProperties() {
+    public void setProperties() {
         Properties properties = new Properties();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("config.properties"));
@@ -24,6 +24,54 @@ public class Files {
     public static void writeFiles() {
         writeFileManufacturer("souvenir.txt");
         writeFileSouvenir("manufacturer.txt");
+    }
+    public static void readFiles(){
+        readFileSouvenir("souvenir.txt");
+        readFileManufacturer("manufacturer.txt");
+    }
+
+    private static void readFileSouvenir(String dir) {
+        try {
+            File file = new File(directory + dir);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()){
+                String sep = scanner.nextLine();
+                if(sep.equals(" ")){
+                    String nameSouvenir  = scanner.nextLine();
+                    String nameManufacturer  = scanner.nextLine();
+                    String country = scanner.nextLine();
+                    String str = scanner.nextLine();
+                    BigDecimal price = new BigDecimal(scanner.nextLine());
+                    Calendar date = checkData(str);
+                    EditFiles.addSouvenir(new Souvenir(nameSouvenir, new Manufacturer(nameManufacturer, country),date,price));
+                }
+                else if (sep.equals(";")){
+                    break;
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private static void readFileManufacturer(String dir){
+        try {
+            File file = new File(directory + dir);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String separator = scanner.nextLine();
+                if(separator.equals(" ")){
+                    String name = scanner.nextLine();
+                    String country = scanner.nextLine();
+                    EditFiles.addManufacturer(new Manufacturer(name, country));
+                } else if(separator.equals(";")){
+                    break;
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void writeFileManufacturer(String dir) {
@@ -57,30 +105,6 @@ public class Files {
             fileWriter.write(";");
             fileWriter.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    private static void readFileManufacturer(String dir){
-        try {
-            File file = new File(directory + dir);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()){
-                String sep = scanner.nextLine();
-                if(sep.equals(" ")){
-                    String nameSouvenir  = scanner.nextLine();
-                    String nameManufacturer  = scanner.nextLine();
-                    String country = scanner.nextLine();
-                    String str = scanner.nextLine();
-                    BigDecimal price = new BigDecimal(scanner.nextLine());
-                    Calendar date = checkData(str);
-                    EditFiles.addSouvenir(new Souvenir(nameSouvenir, new Manufacturer(nameManufacturer, country),date,price));
-                }
-                else if (sep.equals(";")){
-                    break;
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
