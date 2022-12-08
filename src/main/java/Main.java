@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         Souvenir souvenir1 = new Souvenir("Plate", new Manufacturer("Ferrari", "Italy"), new GregorianCalendar(2021, 3, 1), new BigDecimal("60.00"));
         Souvenir souvenir2 = new Souvenir("Shirt", new Manufacturer("Ferrari", "Italy"), new GregorianCalendar(2022, 12, 4), new BigDecimal("249.50"));
         Souvenir souvenir3 = new Souvenir("Sticker", new Manufacturer("Apple", "USA"), new GregorianCalendar(2018, 3, 27), new BigDecimal("40.50"));
