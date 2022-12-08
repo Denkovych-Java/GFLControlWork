@@ -50,7 +50,6 @@ public class Main {
         EditFiles.addManufacturer(manufacturer5);
         EditFiles.addManufacturer(manufacturer6);
 
-//        Files.setProperties();
         Files.readFiles();
         while (true){
             Menu.getMenu();

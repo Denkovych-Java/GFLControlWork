@@ -17,6 +17,7 @@ public interface SouvenirInterface {
 
     void setName(String name);
 
+
     void setManufacturer(ManufacturerInterface manufacturer);
 
     void setDate(Calendar date);

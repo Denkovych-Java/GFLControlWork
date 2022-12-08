@@ -49,7 +49,6 @@ public class Menu {
                 return;
             default:
                 System.out.println("default");
-                getFirstMenu();
         }
     }
 
