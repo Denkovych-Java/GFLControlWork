@@ -1,4 +1,4 @@
-package consolMenu;
+package IO.consolMenu;
 
 import IO.EditFiles;
 import IO.Files;

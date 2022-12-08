@@ -1,13 +1,15 @@
 import IO.EditFiles;
 import IO.Files;
+import IO.consolMenu.Menu;
 import manufacturer.Manufacturer;
 import souvenirs.Souvenir;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class Main {
-    private String directory;
 
     public static void main(String[] args) {
 
@@ -49,5 +51,68 @@ public class Main {
         EditFiles.addManufacturer(manufacturer5);
         EditFiles.addManufacturer(manufacturer6);
 
+//        Files.setProperties();
+        Files.readFiles();
+        while (true){
+            Menu.getMenu();
+            String s;
+            switch (getInt()){
+            case 1:
+                Menu.getFirstMenu();
+                break;
+            case 2:
+                System.out.print("Enter manufacturer: ");
+                 s = getString();
+                EditFiles.getSouvenirsFromManufacturer(s);
+                break;
+            case 3:
+                System.out.print("Enter country: ");
+                s = getString();
+                EditFiles.getSouvenirsFromCountry(s);
+                break;
+            case 4:
+                System.out.print("Enter price: ");
+                BigDecimal price = getBD();
+                EditFiles.getManufacturersWithLowerPrice(price);
+                break;
+            case 5:
+                EditFiles.getManufacturersWithSouvenirs();
+                break;
+            case 6:
+                System.out.print("Enter name souvenir: ");
+                s = getString();
+                System.out.print("Enter year:");
+                int year = getInt();
+                EditFiles.getManufacturerWithSouvenirsYears(s, year);
+                break;
+            case 7:
+                EditFiles.getSouvenirsFromYear();
+                break;
+            case 8:
+                System.out.print("Enter manufacturer name: ");
+                s = getString();
+                EditFiles.deleteManufacturerAndSouvenirs(s);
+                break;
+            case 0:
+                Files.writeFiles();
+                return;
+        }
+        }
     }
+
+        public static String getString(){
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextLine();
+        }
+
+        public static BigDecimal getBD(){
+            Scanner scanner = new Scanner(System.in);
+            BigDecimal bigDecimal = new BigDecimal(scanner.nextLine()) ;
+            return bigDecimal.setScale(2, RoundingMode.CEILING);
+        }
+
+        public static Integer getInt(){
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextInt();
+        }
 }

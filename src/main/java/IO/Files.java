@@ -8,18 +8,18 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Files {
-    private static String directory;
+//    private static String directory;
 
-    public void setProperties() {
-        Properties properties = new Properties();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("config.properties"));
-            properties.load(reader);
-            directory = properties.getProperty("data");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public static void setProperties() {
+//        Properties properties = new Properties();
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader("config.properties"));
+//            properties.load(reader);
+//            directory = properties.getProperty("data");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static void writeFiles() {
         writeFileManufacturer("souvenir.txt");
@@ -32,7 +32,7 @@ public class Files {
 
     private static void readFileSouvenir(String dir) {
         try {
-            File file = new File(directory + dir);
+            File file = new File("src/main/resources/" + dir);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()){
                 String sep = scanner.nextLine();
@@ -56,7 +56,7 @@ public class Files {
     }
     private static void readFileManufacturer(String dir){
         try {
-            File file = new File(directory + dir);
+            File file = new File("src/main/resources/" + dir);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String separator = scanner.nextLine();
@@ -76,7 +76,7 @@ public class Files {
 
     private static void writeFileManufacturer(String dir) {
         try {
-            FileWriter fileWriter = new FileWriter(directory + dir);
+            FileWriter fileWriter = new FileWriter("src/main/resources/"  + dir );
             ArrayList<Manufacturer> manufacturers = EditFiles.getManufacturers();
             for (Manufacturer manufacturer : manufacturers) {
                 for (String m : Arrays.asList(" ", "\n" + manufacturer.getName(), "\n" + manufacturer.getCountry() + "\n")) {
@@ -92,7 +92,7 @@ public class Files {
 
     private static void writeFileSouvenir(String dir) {
         try {
-            FileWriter fileWriter = new FileWriter(directory + dir);
+            FileWriter fileWriter = new FileWriter("src/main/resources/"  + dir );
             ArrayList<Souvenir> souvenirs = EditFiles.getSouvenirs();
             for (Souvenir s : souvenirs) {
                 fileWriter.write(" ");

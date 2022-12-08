@@ -24,9 +24,9 @@ public class EditFiles {
         }
     }
 
-    public static boolean deleteSouvenir(Souvenir souvenir) {
-        return souvenirsList.remove(souvenir);
-    }
+//    public static boolean deleteSouvenir(Souvenir souvenir) {
+//        return souvenirsList.remove(souvenir);
+//    }
 
     public static ArrayList<Souvenir> getSouvenirs() {
         return souvenirsList;
