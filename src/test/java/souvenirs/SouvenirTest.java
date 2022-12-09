@@ -1,7 +1,6 @@
 package souvenirs;
 
 import manufacturer.Manufacturer;
-import manufacturer.ManufacturerInterface;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -75,23 +74,21 @@ public class SouvenirTest {
         assertThat(souvenir.getManufacturer().getCountry()).isEqualTo(country);
 
     }
-
-    @DataProvider(name = "tester3")
-    public Object[][] createData3() {
-        return new Object[][]{
-                {"NameManufacturer1","Country1"},
-                {"NameManufacturer2","Country2"},
-                {"NameManufacturer3","Country3"}
-        };
-    }
-    @Test(dataProvider = "tester2")
+    @Test
     public void testSetDate() {
-
+        Calendar expected = new GregorianCalendar(2022, 2, 2);
+        int year = 2022;
+        int month = 2;
+        int day = 2;
+        souvenir.setDate(new GregorianCalendar(year,month,day));
+        assertThat(souvenir.getDate()).isEqualTo(expected);
     }
 
     @Test
     public void testSetPrice() {
+        BigDecimal expected = new BigDecimal("99.99");
+        souvenir.setPrice(new BigDecimal("99.99"));
+        assertThat(souvenir.getPrice()).isEqualTo(expected);
     }
-
 
 }
