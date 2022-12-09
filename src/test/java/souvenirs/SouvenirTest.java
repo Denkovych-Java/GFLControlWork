@@ -90,5 +90,4 @@ public class SouvenirTest {
         souvenir.setPrice(new BigDecimal("99.99"));
         assertThat(souvenir.getPrice()).isEqualTo(expected);
     }
-
 }

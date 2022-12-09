@@ -54,47 +54,42 @@ public class Main {
         while (true){
             Menu.getMenu();
             String s;
-            switch (getInt()){
-            case 1:
-                Menu.getFirstMenu();
-                break;
-            case 2:
-                System.out.print("Enter manufacturer: ");
-                 s = getString();
-                EditFiles.getSouvenirsFromManufacturer(s);
-                break;
-            case 3:
-                System.out.print("Enter country: ");
-                s = getString();
-                EditFiles.getSouvenirsFromCountry(s);
-                break;
-            case 4:
-                System.out.print("Enter price: ");
-                BigDecimal price = getBD();
-                EditFiles.getManufacturersWithLowerPrice(price);
-                break;
-            case 5:
-                EditFiles.getManufacturersWithSouvenirs();
-                break;
-            case 6:
-                System.out.print("Enter name souvenir: ");
-                s = getString();
-                System.out.print("Enter year:");
-                int year = getInt();
-                EditFiles.getManufacturerWithSouvenirsYears(s, year);
-                break;
-            case 7:
-                EditFiles.getSouvenirsFromYear();
-                break;
-            case 8:
-                System.out.print("Enter manufacturer name: ");
-                s = getString();
-                EditFiles.deleteManufacturerAndSouvenirs(s);
-                break;
-            case 0:
-                Files.writeFiles();
-                return;
-        }
+            switch (getInt()) {
+                case 1 -> Menu.getFirstMenu();
+                case 2 -> {
+                    System.out.print("Enter manufacturer: ");
+                    s = getString();
+                    EditFiles.getSouvenirsFromManufacturer(s);
+                }
+                case 3 -> {
+                    System.out.print("Enter country: ");
+                    s = getString();
+                    EditFiles.getSouvenirsFromCountry(s);
+                }
+                case 4 -> {
+                    System.out.print("Enter price: ");
+                    BigDecimal price = getBD();
+                    EditFiles.getManufacturersWithLowerPrice(price);
+                }
+                case 5 -> EditFiles.getManufacturersWithSouvenirs();
+                case 6 -> {
+                    System.out.print("Enter name souvenir: ");
+                    s = getString();
+                    System.out.print("Enter year:");
+                    int year = getInt();
+                    EditFiles.getManufacturerWithSouvenirsYears(s, year);
+                }
+                case 7 -> EditFiles.getSouvenirsFromYear();
+                case 8 -> {
+                    System.out.print("Enter manufacturer name: ");
+                    s = getString();
+                    EditFiles.deleteManufacturerAndSouvenirs(s);
+                }
+                case 0 -> {
+                    Files.writeFiles();
+                    return;
+                }
+            }
         }
     }
 
